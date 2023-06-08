@@ -37,3 +37,19 @@ print(df) # imprimimos o dataframe
 
 
 
+print(df['Nº pedido'].where(df['marg_porc'] > 20, "menor que 20")) # filtramos a coluna numero de pedido onde a margem percentual de lucro é maior que 20, nos casos onde não for maior que 20 ela vai imprimir 'menor que 20'
+
+
+
+print(df['Cliente'].unique()) # imprime a coluna cliente sem repeticoes
+
+print(df['Cliente'].nunique()) # imprime o numero de clientes sem contar as repeticoes
+
+
+
+
+print(df.nunique()) # retorna os valores unicos de cada coluna da tabela
+
+
+
+print(df.sort_values(by='Nº pedido', ascending=True)) # classifica o dataframe em ordem crescente de numero de pedido
