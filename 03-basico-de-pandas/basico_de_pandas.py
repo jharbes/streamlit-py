@@ -20,3 +20,20 @@ df.loc[df['Vendedor'] == 'Paulo'] # loc (localize) para filtrar a tabela apenas 
 df.loc[df['Vendedor'] == 'Paulo', ['Valor Pedido']] # vai filtar o Vendedor Paulo porém a tabela só retornará a coluna 'Valor Pedido'
 
 
+
+df.groupby(['Produto vendido']).sum() # agrupa pelo produto vendido e soma as colunas
+
+df.groupby(['Produto vendido']).mean() # agrupa pelo produto vendido e mostra a media das colunas
+
+
+
+len(df) # retorna o numero de linhas do dataframe
+
+
+
+df['marg_porc'] = 100*df['Margem Lucro'] / df['Valor Pedido'] # criamos a coluna 'marg_porc' que é a margem percentual adicionando ela ao dataframe
+
+df # imprimimos o dataframe
+
+
+
