@@ -58,3 +58,16 @@ rotulo_area=grafico_area.mark_text(
 st.subheader('Gráfico de ÁREA')
 
 st.altair_chart(grafico_area+rotulo_area,use_container_width=True)
+
+
+
+
+# CRIANDO GRAFICO DE PIZZA
+
+grafico_pizza=alt.Chart(fonte).mark_arc().encode(
+    theta=alt.Theta(field='b',type='quantitative'),
+    color=alt.Color(field='a',type='nominal')
+)
+
+st.subheader('Gráfico de PIZZA')
+st.altair_chart(grafico_pizza)
