@@ -25,3 +25,16 @@ st.subheader('2- Minha música')
 
 # em format temos que especificar o formato do audio
 st.audio(abrir_audio,format='audio/mp3')
+
+
+
+
+# INSERINDO VIDEO
+
+arquivo_video=open('../Mídia/Buildings.mp4','rb')
+
+abrir_video=arquivo_video.read()
+
+st.subheader('3- Vídeo dos prédios')
+
+st.video(abrir_video)
