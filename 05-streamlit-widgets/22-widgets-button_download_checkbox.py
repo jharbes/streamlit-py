@@ -33,3 +33,13 @@ st.download_button(
     file_name='df.csv',
     mime='text/csv'   
 )
+
+
+
+st.subheader('Checkbox')
+
+select=st.checkbox('Marque a caixa')
+
+# fazemos a checkbox funcionar também por meio de uma condicional
+if select:
+    st.write('Fui selecionado')
