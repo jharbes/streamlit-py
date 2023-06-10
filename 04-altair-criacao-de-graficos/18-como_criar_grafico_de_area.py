@@ -9,3 +9,6 @@ df = pd.read_excel(
     usecols='A:B',
     nrows=15,
 )
+
+df # imprime a base de dados
+
