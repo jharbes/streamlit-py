@@ -38,9 +38,15 @@ grafico_linha_A=alt.Chart(vendas).mark_line(
     # com scale alteramos a escala do grafico para que tenha seu dominio entre 0 e 160 de modo que ele fique completamente inserido ao eixo y
     y=alt.Y('product_A',axis=alt.Axis(grid=False),scale=alt.Scale(domain=(0,160))),
 
+    # o tooltip mostrará os valores daquele ponto quando passarmos o mouse por cima (hover) em uma janela a parte ajudando tambem a visualizacao dos valores
+    tooltip=['Month','product_A','product_B']
+
 ).properties(
     width=600,
-    height=300
+    height=300,
+
+    # adiciona um título ao gráfico
+    title='VENDAS MENSAIS DOS PRODUTOS A & B'
 )
 
 
@@ -52,7 +58,10 @@ grafico_linha_B=alt.Chart(vendas).mark_line(
     point=alt.OverlayMarkDef(color='yellow',size=70,filled=False, fill='black'),
 ).encode(
     x=alt.X('Month'),
-    y=alt.Y('product_B')
+    y=alt.Y('product_B'),
+
+    # o tooltip mostrará os valores daquele ponto quando passarmos o mouse por cima (hover) em uma janela a parte ajudando tambem a visualizacao dos valores
+    tooltip=['Month','product_A','product_B']
 )
 
 
