@@ -2,7 +2,7 @@ import streamlit as st
 import altair as alt
 import pandas as pd
 
-source = pd.read_csv('vega_car.csv')
+source = pd.read_csv('../Datasets/vega_car.csv')
 
 points = alt.Chart(source).mark_point().encode(
     x='Horsepower:Q',
