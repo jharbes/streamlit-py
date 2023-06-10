@@ -1,6 +1,6 @@
 import pandas as pd
 import streamlit as st
-import datetime
+from datetime import *
 
 
 ### SLIDER
@@ -32,3 +32,12 @@ st.write('Intervalo: ',intervalo)
 
 ### DATAS
 st.subheader('Datas')
+
+
+# primeiro parâmetro será o texto informativo, segundo parâmetro será a data inicial (onde poderemos mudar e escolher a data desejada)
+data=st.date_input(
+    'Selecione a data desejada:',
+    datetime.now()
+)
+
+st.write('A data selecionado foi: ',data)
