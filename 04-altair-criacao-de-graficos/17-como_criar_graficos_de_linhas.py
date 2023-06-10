@@ -22,12 +22,21 @@ vendas # imprime o dataframe
 
 st.subheader('GRÁFICO DE LINHAS: PRODUTOS A & B')
 
-grafico_linha_a=alt.Chart(vendas).mark_line().encode(
+grafico_linha_A=alt.Chart(vendas).mark_line(
+    # define a cor da linha do grafico
+    color='red',
+    
+    # define que existe um ponto em cada local dos pontos enumerados do product_A e sua cor, color define sua cor, size o seu tamanho, filled se ele estará preenchido ou nao e fill qual cor de preenchimento
+    point=alt.OverlayMarkDef(color='red',size=70,filled=False, fill='black'),
+
+).encode(
     # essa forma de definir o eixo X é a forma onde conseguimos parametrizar o campo
     x=alt.X('Month'),
 
     # y='product_A', # podemos fazer assim porem não poderemos configurar a exibicao desse eixo
-    y=alt.Y('product_A')
+    # retiramos as linhas de grid do grafico com a expressao axis=alt.Axis(grid=False) (linhas pontilhadas como no excel)
+    # com scale alteramos a escala do grafico para que tenha seu dominio entre 0 e 160 de modo que ele fique completamente inserido ao eixo y
+    y=alt.Y('product_A',axis=alt.Axis(grid=False),scale=alt.Scale(domain=(0,160))),
 
 ).properties(
     width=600,
@@ -35,13 +44,19 @@ grafico_linha_a=alt.Chart(vendas).mark_line().encode(
 )
 
 
-grafico_linha_b=alt.Chart(vendas).mark_line().encode(
+grafico_linha_B=alt.Chart(vendas).mark_line(
+    # define a cor da linha do grafico
+    color='yellow',
+    
+    # define que existe um ponto em cada local dos pontos enumerados do product_A e sua cor
+    point=alt.OverlayMarkDef(color='yellow',size=70,filled=False, fill='black'),
+).encode(
     x=alt.X('Month'),
     y=alt.Y('product_B')
 )
 
 
-rotulo_a=grafico_linha_a.mark_text(
+rotulo_A=grafico_linha_A.mark_text(
     dy=-15,
     size=14,
     color='white'
@@ -50,13 +65,13 @@ rotulo_a=grafico_linha_a.mark_text(
 )
 
 
-rotulo_b=grafico_linha_b.mark_text(
+rotulo_B=grafico_linha_B.mark_text(
     dy=-15,
     size=14,
-    color='yellow'
+    color='gray'
 ).encode(
     text='product_B'
 )
 
 
-st.altair_chart(grafico_linha_a+grafico_linha_b+rotulo_a+rotulo_b)
+st.altair_chart(grafico_linha_A+grafico_linha_B+rotulo_A+rotulo_B)
