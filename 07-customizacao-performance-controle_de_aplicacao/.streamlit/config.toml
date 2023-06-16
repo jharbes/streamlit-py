@@ -1,8 +1,9 @@
 [theme]
-primaryColor="#ffffff"
-backgroundColor="#FFFFFF"
-secondaryBackgroundColor="#9DD1F1" 
-textColor= "#000000"
+# base='dark'
+primaryColor="#7B68EE"
+backgroundColor="#363636"
+secondaryBackgroundColor="#4F4F4F" 
+textColor= "#DCDCDC"
 font="serif"
 
 # Para cores, podemos usar os formatos: "green", "#FFDE5A" ou RGB(61,183,228)
