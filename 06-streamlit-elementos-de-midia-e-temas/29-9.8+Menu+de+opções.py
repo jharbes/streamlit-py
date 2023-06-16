@@ -9,15 +9,16 @@ selected = option_menu(
     menu_icon="cast",
     default_index=0,
     orientation="horizontal",
-    styles={
-    "container": {"padding": "0!important", "background-color": "#fafafa"},
-    "icon": {"color": "orange", "font-size": "25px"},
-    "nav-link": {
-        "font-size": "15px",
-        "text-align": "left",
-        "margin": "0px",
-        "--hover-color": "#eee",
-    },
-    "nav-link-selected": {"background-color": "green"},
-},
+
+    # styles={
+    #         "container": {"padding": "0!important", "background-color": "purple"},
+    #         "icon": {"color": "orange", "font-size": "25px"},
+    #         "nav-link": {
+    #             "font-size": "15px",
+    #             "text-align": "left",
+    #             "margin": "0px",
+    #             "--hover-color": "darkgray",
+    #         },
+    #         "nav-link-selected": {"background-color": "gray"},
+    # },
 )
