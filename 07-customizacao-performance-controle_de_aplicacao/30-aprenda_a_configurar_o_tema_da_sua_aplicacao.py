@@ -14,7 +14,7 @@ Outras informações adicionais podem ser preenchidas no mesmo arquivo para outr
 base="dark"
 primaryColor="#ffffff"
 backgroundColor="#FFFFFF"
-secondaryBackgroundColor="#9DD1F1" 
+secondaryBackgroundColor="#9DD1F1" # cor do sidebar
 textColor= "#000000"
 font="serif"
 
