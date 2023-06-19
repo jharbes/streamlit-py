@@ -46,12 +46,39 @@ with st.sidebar:
 
 
 
+
+### 1- Tabela quantidade vendida por produto
 tabela_quantidade_produto=df.loc[
     (df['Vendedor']==filtro_vendedor) &
     (df['Cliente']==filtro_cliente)
 ]
 
 # precisamos resetar o index para podermos usar o grafico após o agrupamento
-# faremos tambem a especificacao das colunas a serem somadas, pois caso nao seja feita o codigo apresentara um erro ao tentar somar a coluna de datas
+# faremos tambem a especificacao das colunas a serem somadas, pois caso nao seja feita, o codigo apresentara um erro ao tentar somar a coluna de datas
 tabela_quantidade_produto=tabela_quantidade_produto.groupby('Produto vendido')[['Quantidade','Valor Pedido']].sum().reset_index()
+
 tabela_quantidade_produto
+
+
+
+
+### 2- Tabela de Vendas e Margem
+tabela_vendas_margem=df.loc[
+    (df['Vendedor']==filtro_vendedor) &
+    (df['Produto vendido']==filtro_produto) &
+    (df['Cliente']==filtro_cliente)
+]
+
+tabela_vendas_margem
+
+
+
+
+### 3 Tabela de Vendas por Vendedor
+tabela_vendas_vendedor=df.loc[
+    (df['Produto vendido']==filtro_produto) &
+    (df['Cliente']==filtro_cliente)
+]
+
+tabela_vendas_vendedor=tabela_vendas_vendedor.groupby('Vendedor')[['Quantidade','Valor Pedido']].sum().reset_index()
+tabela_vendas_vendedor
