@@ -21,8 +21,6 @@ df=pd.read_excel(
     nrows=4400
 )
 
-df
-
 
 # CRIANDO O SIDEBAR
 with st.sidebar:
@@ -45,3 +43,15 @@ with st.sidebar:
         'Selecione o cliente:',
         options=df['Cliente'].unique()
     )
+
+
+
+tabela_quantidade_produto=df.loc[
+    (df['Vendedor']==filtro_vendedor) &
+    (df['Cliente']==filtro_cliente)
+]
+
+# precisamos resetar o index para podermos usar o grafico após o agrupamento
+# faremos tambem a especificacao das colunas a serem somadas, pois caso nao seja feita o codigo apresentara um erro ao tentar somar a coluna de datas
+tabela_quantidade_produto=tabela_quantidade_produto.groupby('Produto vendido')[['Quantidade','Valor Pedido']].sum().reset_index()
+tabela_quantidade_produto
