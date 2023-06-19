@@ -74,11 +74,41 @@ tabela_vendas_margem
 
 
 
-### 3 Tabela de Vendas por Vendedor
+### 3- Tabela de Vendas por Vendedor
 tabela_vendas_vendedor=df.loc[
     (df['Produto vendido']==filtro_produto) &
     (df['Cliente']==filtro_cliente)
 ]
 
+# precisamos resetar o index para podermos usar o grafico após o agrupamento
+# faremos tambem a especificacao das colunas a serem somadas, pois caso nao seja feita, o codigo apresentara um erro ao tentar somar a coluna de datas
 tabela_vendas_vendedor=tabela_vendas_vendedor.groupby('Vendedor')[['Quantidade','Valor Pedido']].sum().reset_index()
 tabela_vendas_vendedor
+
+
+
+
+### 4- Tabela Vendas por Cliente
+tabela_venda_cliente=df.loc[
+    (df['Vendedor']==filtro_vendedor) &
+    (df['Produto vendido']==filtro_produto)
+]
+
+# precisamos resetar o index para podermos usar o grafico após o agrupamento
+# faremos tambem a especificacao das colunas a serem somadas, pois caso nao seja feita, o codigo apresentara um erro ao tentar somar a coluna de datas
+tabela_venda_cliente=tabela_venda_cliente.groupby('Cliente')[['Quantidade','Valor Pedido']].sum().reset_index()
+tabela_venda_cliente
+
+
+
+
+### 5- Vendas Mensais
+tabela_vendas_mensais=df.loc[
+    (df['Vendedor']==filtro_vendedor) &
+    (df['Produto vendido']==filtro_produto) &
+    (df['Cliente']==filtro_cliente)
+]
+
+# vamos criar colunas específicas para abrigar cada campo da data de forma a facilitar a filtragem
+tabela_vendas_mensais['mm']=tabela_vendas_mensais['Data'].dt.strftime('%m/%Y')
+tabela_vendas_mensais
