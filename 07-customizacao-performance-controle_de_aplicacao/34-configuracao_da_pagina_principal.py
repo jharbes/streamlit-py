@@ -3,6 +3,33 @@ import pandas as pd
 import streamlit as st
 import altair as alt
 
+
+# SET PAGE CONFIG - permite algumas configuracoes como titulo da aplicacao, icones, layout, configurar sidebar se inicia expandido ou colapsado, configurar links nos elementos na parte superior direita da tela
+# SET PAGE CONFIG - precisa ser o primeiro elemento do codigo
+st.set_page_config(
+    # muda o titulo da pagina (na parte superior do browser)
+    page_title='Os Homens mais ricos do mundo',
+
+    # page icon adiciona um favicon para a pagina
+    page_icon='📈',
+
+    # layout pode ser centered ou wide
+    layout='centered',
+
+    # se o sidebar começa collapsed, expanded ou auto
+    initial_sidebar_state='expanded',
+
+    # altera configuracoes do menu superior a direita do streamlit
+    menu_items={
+        'Get Help': 'https://www.meusite.com.br',
+        'Report a bug':'http://www.meuoutrosite.com.br',
+        'About': 'Esse app foi desenvolvido por J.Harbes',
+    }
+)
+
+
+
+
 df = pd.read_excel(
     io = '../Datasets/faturamento.xlsx',
     engine = 'openpyxl',
