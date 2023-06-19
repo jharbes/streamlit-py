@@ -10,6 +10,18 @@ df = pd.read_excel(
     nrows=87,
 )
 
+
+# ao clicar no botao iniciar o codigo restante passa a ser executado
+if st.button('Iniciar'):
+    st.experimental_rerun()
+
+
+# ao clicar no botao o codigo restando para de funcionar aguardando o clique no botao iniciar 
+if st.button('Parar'):
+    st.stop()
+
+
+
 histograma=alt.Chart(df).mark_bar().encode(
     x=alt.X('x',bin=alt.Bin(step=5)),
 
