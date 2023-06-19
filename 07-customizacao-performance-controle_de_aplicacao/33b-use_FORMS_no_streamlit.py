@@ -7,6 +7,7 @@ def mostrarResultado():
     st.write('Banco: ',varBanco)
     st.write('Parcelas: ',varParcela)
     st.write('Data de Vencimento: ',varData)
+    st.write('Filial: ',varCheckbox)
 
 # Uma opção muito utilizada para formulários é usar um st.form, isso faz com que os dados selecionados só sejam processados após o envio por um botão de submit, evitando alterações em tempo real ao mexer nos formulários, ensejando assim apenas uma atualização única após o envio completo do formulário
 with st.form('Formulário de seleção de parâmetros'):
@@ -35,6 +36,7 @@ with st.form('Formulário de seleção de parâmetros'):
         datetime.date(2023,1,1)
     )
 
+    varCheckbox=st.checkbox('Filial Campinas')
 
     '----------------------------------------------------'
 

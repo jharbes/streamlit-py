@@ -29,6 +29,7 @@ with st.form('Formulário de seleção de parâmetros'):
         datetime.date(2023,1,1)
     )
 
+    varCheckbox=st.checkbox('Filial Campinas')
 
     '----------------------------------------------------'
 
@@ -41,4 +42,4 @@ st.write('Cliente: ',varClient)
 st.write('Banco: ',varBanco)
 st.write('Parcelas: ',varParcela)
 st.write('Data de Vencimento: ',varData)
-
+st.write('Filial: ',varCheckbox)
