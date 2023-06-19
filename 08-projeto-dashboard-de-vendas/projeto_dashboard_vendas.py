@@ -22,3 +22,26 @@ df=pd.read_excel(
 )
 
 df
+
+
+# CRIANDO O SIDEBAR
+with st.sidebar:
+    st.subheader('MENU - DASHBOARD DE VENDAS')
+
+    # filtro dos vendedores
+    filtro_vendedor=st.selectbox(
+        'Selecione o Vendedor:',
+        options=df['Vendedor'].unique()
+    )
+
+    # filtro dos produtos
+    filtro_produto=st.selectbox(
+        'Selecione o Produto:',
+        options=df['Produto vendido'].unique()
+    )
+
+    # filtrar os clientes
+    filtro_cliente=st.selectbox(
+        'Selecione o cliente:',
+        options=df['Cliente'].unique()
+    )
