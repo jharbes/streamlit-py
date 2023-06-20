@@ -57,7 +57,7 @@ tabela_quantidade_produto=df.loc[
 # faremos tambem a especificacao das colunas a serem somadas, pois caso nao seja feita, o codigo apresentara um erro ao tentar somar a coluna de datas
 tabela_quantidade_produto=tabela_quantidade_produto.groupby('Produto vendido')[['Quantidade','Valor Pedido']].sum().reset_index()
 
-tabela_quantidade_produto
+# tabela_quantidade_produto
 
 
 
@@ -69,7 +69,7 @@ tabela_vendas_margem=df.loc[
     (df['Cliente']==filtro_cliente)
 ]
 
-tabela_vendas_margem
+# tabela_vendas_margem
 
 
 
@@ -83,7 +83,8 @@ tabela_vendas_vendedor=df.loc[
 # precisamos resetar o index para podermos usar o grafico após o agrupamento
 # faremos tambem a especificacao das colunas a serem somadas, pois caso nao seja feita, o codigo apresentara um erro ao tentar somar a coluna de datas
 tabela_vendas_vendedor=tabela_vendas_vendedor.groupby('Vendedor')[['Quantidade','Valor Pedido']].sum().reset_index()
-tabela_vendas_vendedor
+
+# tabela_vendas_vendedor
 
 
 
@@ -97,7 +98,8 @@ tabela_venda_cliente=df.loc[
 # precisamos resetar o index para podermos usar o grafico após o agrupamento
 # faremos tambem a especificacao das colunas a serem somadas, pois caso nao seja feita, o codigo apresentara um erro ao tentar somar a coluna de datas
 tabela_venda_cliente=tabela_venda_cliente.groupby('Cliente')[['Quantidade','Valor Pedido']].sum().reset_index()
-tabela_venda_cliente
+
+# tabela_venda_cliente
 
 
 
@@ -115,8 +117,8 @@ tabela_vendas_mensais = tabela_vendas_mensais.copy()
 
 # Agora, este código não deve gerar um SettingWithCopyWarning
 tabela_vendas_mensais['mm'] = tabela_vendas_mensais['Data'].dt.strftime('%m/%Y')
-tabela_vendas_mensais
 
+# tabela_vendas_mensais
 
 
 
@@ -157,7 +159,7 @@ grafico_quantidade_produto=alt.Chart(tabela_quantidade_produto).mark_bar(
     strokeWidth=0
 )
 
-st.altair_chart(grafico_quantidade_produto)
+
 
 
 
@@ -189,7 +191,7 @@ grafico_valor_produto=alt.Chart(tabela_quantidade_produto).mark_bar(
     strokeWidth=0
 )
 
-st.altair_chart(grafico_valor_produto)
+
 
 
 
@@ -225,7 +227,7 @@ grafico_vendas_vendedor=alt.Chart(tabela_vendas_vendedor).mark_arc(
 rotulo_vendas_vendedor=grafico_vendas_vendedor.mark_text(radius=210, size=14).encode(text='Vendedor')
 rotulo_vendas_produto=grafico_vendas_vendedor.mark_text(radius=180, size=12).encode(text='Valor Pedido')
 
-st.altair_chart(grafico_vendas_vendedor+rotulo_vendas_vendedor+rotulo_vendas_produto)
+
 
 
 
@@ -257,7 +259,7 @@ grafico_vendas_cliente=alt.Chart(tabela_venda_cliente).mark_bar(
     strokeWidth=0
 )
 
-st.altair_chart(grafico_vendas_cliente)
+
 
 
 
@@ -278,4 +280,44 @@ grafico_vendas_mensais=alt.Chart(tabela_vendas_mensais).mark_line(
     strokeWidth=0
 )
 
+
+
+
+
+#### PÁGINA PRINCIPAL
+
+total_vendas=round(tabela_vendas_margem['Valor Pedido'].sum(),2)
+total_margem=round(tabela_vendas_margem['Margem Lucro'].sum(),2)
+percentual_margem=int(100*total_margem/total_vendas)
+
+st.header(':bar_chart: DASHBOARD DE VENDAS')
+
+
+# vamos criar agora as variaveis que serão as colunas que darão espaçamento entre um gráfico e outro
+destaque1,destaque2,destaque3,destaque4=st.columns([1,1,1,2.5])
+
+
+
+st.altair_chart(grafico_quantidade_produto)
+st.altair_chart(grafico_valor_produto)
+st.altair_chart(grafico_vendas_vendedor+rotulo_vendas_vendedor+rotulo_vendas_produto)
+st.altair_chart(grafico_vendas_cliente)
 st.altair_chart(grafico_vendas_mensais)
+
+
+with destaque1:
+    # os dois asteristicos entre a frase é pra deixá-lo em negrito
+    st.write('**VENDAS TOTAIS:**')
+    st.info(f'R$ {total_vendas}')
+
+
+with destaque2:
+    st.write('**MARGEM TOTAL:**')
+    st.info(f'R$ {total_margem}')
+
+
+with destaque3:
+    st.write('**MARGEM EM %:**')
+    st.info(f'{percentual_margem}')
+
+st.markdown('---')
