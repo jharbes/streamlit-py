@@ -130,7 +130,7 @@ cor_grafico='#FFFFFF'
 
 #### GRAFICOS
 
-# Gráfico 1.0- Quantidade vendida por produto
+### Gráfico 1.0- Quantidade vendida por produto
 
 grafico_quantidade_produto=alt.Chart(tabela_quantidade_produto).mark_bar(
     color=cor_grafico,
@@ -162,7 +162,7 @@ st.altair_chart(grafico_quantidade_produto)
 
 
 
-# Gráfico 1.1- Valor da venda por produto
+### Gráfico 1.1- Valor da venda por produto
 
 grafico_valor_produto=alt.Chart(tabela_quantidade_produto).mark_bar(
     color=cor_grafico,
@@ -194,7 +194,7 @@ st.altair_chart(grafico_valor_produto)
 
 
 
-# Gráfico 2 - Vendas por Vendedor
+### Gráfico 2 - Vendas por Vendedor
 
 grafico_vendas_vendedor=alt.Chart(tabela_vendas_vendedor).mark_arc(
     innerRadius=100,
@@ -230,3 +230,31 @@ st.altair_chart(grafico_vendas_vendedor+rotulo_vendas_vendedor+rotulo_vendas_pro
 
 
 
+### Gráfico 3- Vendas por Cliente
+
+grafico_vendas_cliente=alt.Chart(tabela_venda_cliente).mark_bar(
+    color=cor_grafico,
+
+    # arredondando as bordas superiores à esquerda das barras do grafico
+    cornerRadiusTopLeft=9,
+
+    # arredondando as bordas superiores à direita das barras do grafico
+    cornerRadiusTopRight=9,
+).encode(
+    x='Cliente',
+    y='Valor Pedido',
+    tooltip=['Cliente','Valor Pedido']
+).properties(
+    title='VENDAS POR CLIENTE'
+).configure_axis(
+
+    # retira a grade do fundo do grafico
+    grid=False
+
+    ).configure_view(
+    
+    # retira as bordas do grafico
+    strokeWidth=0
+)
+
+st.altair_chart(grafico_vendas_cliente)
