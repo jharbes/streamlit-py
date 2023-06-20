@@ -161,6 +161,7 @@ st.altair_chart(grafico_quantidade_produto)
 
 
 
+
 # Gráfico 1.1- Valor da venda por produto
 
 grafico_valor_produto=alt.Chart(tabela_quantidade_produto).mark_bar(
@@ -189,3 +190,43 @@ grafico_valor_produto=alt.Chart(tabela_quantidade_produto).mark_bar(
 )
 
 st.altair_chart(grafico_valor_produto)
+
+
+
+
+# Gráfico 2 - Vendas por Vendedor
+
+grafico_vendas_vendedor=alt.Chart(tabela_vendas_vendedor).mark_arc(
+    innerRadius=100,
+    outerRadius=150,
+).encode(
+    theta=alt.Theta(
+        field='Valor Pedido',
+
+        # tipo da variavel quantitativa
+        type='quantitative',
+        stack=True
+    ),
+
+    color=alt.Color(
+        field='Vendedor',
+
+        # tipo da variavel nominal
+        type='nominal',
+    ),
+
+    tooltip=['Vendedor','Valor Pedido']
+).properties(
+    title='VALOR VENDAS POR VENDEDOR',
+    height=500,
+    width=560
+)
+
+rotulo_vendas_vendedor=grafico_vendas_vendedor.mark_text(radius=210, size=14).encode(text='Vendedor')
+rotulo_vendas_produto=grafico_vendas_vendedor.mark_text(radius=180, size=12).encode(text='Valor Pedido')
+
+st.altair_chart(grafico_vendas_vendedor+rotulo_vendas_vendedor+rotulo_vendas_produto)
+
+
+
+
