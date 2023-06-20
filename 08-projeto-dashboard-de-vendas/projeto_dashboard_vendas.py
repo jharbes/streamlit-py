@@ -110,5 +110,51 @@ tabela_vendas_mensais=df.loc[
 ]
 
 # vamos criar colunas específicas para abrigar cada campo da data de forma a facilitar a filtragem
-tabela_vendas_mensais['mm']=tabela_vendas_mensais['Data'].dt.strftime('%m/%Y')
+# faremos uma copia da tabela apenas para evitar que o pandas fique propagando uma mensagem de warning sobre possivel copia nao desejada de tabelas
+tabela_vendas_mensais = tabela_vendas_mensais.copy()
+
+# Agora, este código não deve gerar um SettingWithCopyWarning
+tabela_vendas_mensais['mm'] = tabela_vendas_mensais['Data'].dt.strftime('%m/%Y')
 tabela_vendas_mensais
+
+
+
+
+
+
+
+####### PADROES #######
+cor_grafico='#FFFFFF'
+
+
+
+#### GRAFICOS
+
+# Gráfico 1- Quantidade vendida por produto
+
+grafico_quantidade_produto=alt.Chart(tabela_quantidade_produto).mark_bar(
+    color=cor_grafico,
+
+    # arredondando as bordas superiores à esquerda das barras do grafico
+    cornerRadiusTopLeft=9,
+
+    # arredondando as bordas superiores à direita das barras do grafico
+    cornerRadiusTopRight=9,
+).encode(
+    x='Produto vendido',
+    y='Quantidade',
+    tooltip=['Produto vendido','Quantidade']
+).properties(
+    title='QUANTIDADE VENDIDA POR PRODUTO'
+).configure_axis(
+
+    # retira a grade do fundo do grafico
+    grid=False
+
+    ).configure_view(
+    
+    # retira as bordas do grafico
+    strokeWidth=0
+)
+
+st.altair_chart(grafico_quantidade_produto)
