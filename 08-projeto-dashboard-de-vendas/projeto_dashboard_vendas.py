@@ -272,6 +272,10 @@ grafico_vendas_mensais=alt.Chart(tabela_vendas_mensais).mark_line(
 
     # :Q - tipo quantitativo
     y='Valor Pedido:Q'
+).properties(
+    title='VENDAS MENSAIS',
+).configure_view(
+    strokeWidth=0
 )
 
 st.altair_chart(grafico_vendas_mensais)
