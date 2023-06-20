@@ -258,3 +258,20 @@ grafico_vendas_cliente=alt.Chart(tabela_venda_cliente).mark_bar(
 )
 
 st.altair_chart(grafico_vendas_cliente)
+
+
+
+
+### Gráfico 4- Vendas Mensais
+
+grafico_vendas_mensais=alt.Chart(tabela_vendas_mensais).mark_line(
+    color=cor_grafico,
+).encode(
+    # :T - tipo temporal
+    alt.X('monthdate(Data):T'),
+
+    # :Q - tipo quantitativo
+    y='Valor Pedido:Q'
+)
+
+st.altair_chart(grafico_vendas_mensais)
