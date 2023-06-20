@@ -1,6 +1,26 @@
 import pandas as pd
 import streamlit as st
 import altair as alt
+from PIL import Image
+
+# CONFIGURAÇÕES DE PÁGINA
+
+st.set_page_config(
+    page_title='DASHBOARD DE VENDAS',
+    page_icon='📈',
+
+    # inicia o layout em wide (ocupa a tela toda)
+    layout='wide',
+
+    # sidebar inicia aberto
+    initial_sidebar_state='expanded',
+
+    menu_items={
+        'Get Help':'https://github.com/jharbes',
+        'Report a bug':'https://github.com/jharbes',
+        'About':'Dashboard desenvolvido por J.Harbes'
+    }
+)
 
 
 # CRIANDO O DATAFRAME
@@ -24,6 +44,9 @@ df=pd.read_excel(
 
 # CRIANDO O SIDEBAR
 with st.sidebar:
+    logo_sidebar=Image.open('../Mídia/logo vizion.png')
+    st.image(logo_sidebar, width=300)
+
     st.subheader('MENU - DASHBOARD DE VENDAS')
 
     # filtro dos vendedores
@@ -126,7 +149,8 @@ tabela_vendas_mensais['mm'] = tabela_vendas_mensais['Data'].dt.strftime('%m/%Y')
 
 
 ####### PADROES #######
-cor_grafico='#FFFFFF'
+cor_grafico='#9dd1f1'
+altura_grafico=250
 
 
 
@@ -147,6 +171,7 @@ grafico_quantidade_produto=alt.Chart(tabela_quantidade_produto).mark_bar(
     y='Quantidade',
     tooltip=['Produto vendido','Quantidade']
 ).properties(
+    height=altura_grafico,
     title='QUANTIDADE VENDIDA POR PRODUTO'
 ).configure_axis(
 
@@ -179,6 +204,7 @@ grafico_valor_produto=alt.Chart(tabela_quantidade_produto).mark_bar(
     y='Quantidade',
     tooltip=['Produto vendido','Valor Pedido']
 ).properties(
+    height=altura_grafico,
     title='VALOR TOTAL POR PRODUTO'
 ).configure_axis(
 
@@ -215,12 +241,13 @@ grafico_vendas_vendedor=alt.Chart(tabela_vendas_vendedor).mark_arc(
 
         # tipo da variavel nominal
         type='nominal',
+        legend=None
     ),
 
     tooltip=['Vendedor','Valor Pedido']
 ).properties(
     title='VALOR VENDAS POR VENDEDOR',
-    height=500,
+    height=600,
     width=560
 )
 
@@ -247,7 +274,8 @@ grafico_vendas_cliente=alt.Chart(tabela_venda_cliente).mark_bar(
     y='Valor Pedido',
     tooltip=['Cliente','Valor Pedido']
 ).properties(
-    title='VENDAS POR CLIENTE'
+    title='VENDAS POR CLIENTE',
+    height=altura_grafico
 ).configure_axis(
 
     # retira a grade do fundo do grafico
@@ -276,6 +304,7 @@ grafico_vendas_mensais=alt.Chart(tabela_vendas_mensais).mark_line(
     y='Valor Pedido:Q'
 ).properties(
     title='VENDAS MENSAIS',
+    height=altura_grafico
 ).configure_view(
     strokeWidth=0
 )
@@ -324,17 +353,19 @@ coluna1,coluna2,coluna3=st.columns([1,1,1])
 
 
 with coluna1:
-    st.altair_chart(grafico_vendas_cliente)
-    st.altair_chart(grafico_vendas_mensais)
+
+    # use_container_width=True faz com que o grafico utilize toda a largura do container onde ele está contido
+    st.altair_chart(grafico_vendas_cliente,use_container_width=True)
+    st.altair_chart(grafico_vendas_mensais,use_container_width=True)
 
 
 with coluna2:
-    st.altair_chart(grafico_quantidade_produto)
-    st.altair_chart(grafico_valor_produto)
+    st.altair_chart(grafico_quantidade_produto,use_container_width=True)
+    st.altair_chart(grafico_valor_produto,use_container_width=True)
 
 
 with coluna3:
-    st.altair_chart(grafico_vendas_vendedor+rotulo_vendas_vendedor+rotulo_vendas_produto)
+    st.altair_chart(grafico_vendas_vendedor+rotulo_vendas_vendedor+rotulo_vendas_produto,use_container_width=True)
 
 
 st.markdown('---')
