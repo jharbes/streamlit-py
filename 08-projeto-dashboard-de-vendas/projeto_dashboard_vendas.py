@@ -298,13 +298,6 @@ destaque1,destaque2,destaque3,destaque4=st.columns([1,1,1,2.5])
 
 
 
-st.altair_chart(grafico_quantidade_produto)
-st.altair_chart(grafico_valor_produto)
-st.altair_chart(grafico_vendas_vendedor+rotulo_vendas_vendedor+rotulo_vendas_produto)
-st.altair_chart(grafico_vendas_cliente)
-st.altair_chart(grafico_vendas_mensais)
-
-
 with destaque1:
     # os dois asteristicos entre a frase é pra deixá-lo em negrito
     st.write('**VENDAS TOTAIS:**')
@@ -319,5 +312,29 @@ with destaque2:
 with destaque3:
     st.write('**MARGEM EM %:**')
     st.info(f'{percentual_margem}')
+
+
+# faz uma linha dividindo as partes da pagina
+st.markdown('---')
+
+
+
+# Colunas dos Gráficos
+coluna1,coluna2,coluna3=st.columns([1,1,1])
+
+
+with coluna1:
+    st.altair_chart(grafico_vendas_cliente)
+    st.altair_chart(grafico_vendas_mensais)
+
+
+with coluna2:
+    st.altair_chart(grafico_quantidade_produto)
+    st.altair_chart(grafico_valor_produto)
+
+
+with coluna3:
+    st.altair_chart(grafico_vendas_vendedor+rotulo_vendas_vendedor+rotulo_vendas_produto)
+
 
 st.markdown('---')
