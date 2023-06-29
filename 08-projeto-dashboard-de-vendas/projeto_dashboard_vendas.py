@@ -45,7 +45,7 @@ df=pd.read_excel(
 # CRIANDO O SIDEBAR
 with st.sidebar:
     # logo_sidebar=Image.open('../Mídia/logo vizion.png')
-    st.image(logo_sidebar, width=300)
+    # st.image(logo_sidebar, width=300)
 
     st.subheader('MENU - DASHBOARD DE VENDAS')
 
