@@ -7,7 +7,7 @@ import openpyxl
 # CONFIGURAÇÕES DE PÁGINA
 
 st.set_page_config(
-    page_title='DASHBOARD DE VENDAS',
+    page_title='DASHBOARD DE VENDAS - by J.HARBES',
     page_icon='📈',
 
     # inicia o layout em wide (ocupa a tela toda)
