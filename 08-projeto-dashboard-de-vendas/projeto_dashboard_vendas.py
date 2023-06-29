@@ -27,7 +27,7 @@ st.set_page_config(
 # CRIANDO O DATAFRAME
 df=pd.read_excel(
     # path do arquivo excel
-    io='./system_extraction.xlsx',
+    io='./Datasets/system_extraction.xlsx',
 
     # qual engine vamos utilizar
     engine='openpyxl',
