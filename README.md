@@ -7,6 +7,8 @@
 
 <p>O Streamlit é um framework desenvolvido em Python que torna possível a criação de aplicativos elegantes para modelos de machine learning (aprendizagem de máquina) ou mesmo visualização de dados para uma simples análise exploratória de um dataset (conjunto de dados).</p>
 
+<h3>Acesse em https://projetodashboardvendas.streamlit.app/ !!</h3>
+
 <hr>
 <br>
 
