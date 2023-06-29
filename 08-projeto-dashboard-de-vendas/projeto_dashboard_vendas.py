@@ -320,7 +320,7 @@ total_vendas=round(tabela_vendas_margem['Valor Pedido'].sum(),2)
 total_margem=round(tabela_vendas_margem['Margem Lucro'].sum(),2)
 percentual_margem=int(100*total_margem/total_vendas)
 
-st.header(':bar_chart: DASHBOARD DE VENDAS')
+st.header(':bar_chart: DASHBOARD DE VENDAS - by J.HARBES')
 
 
 # vamos criar agora as variaveis que serão as colunas que darão espaçamento entre um gráfico e outro
